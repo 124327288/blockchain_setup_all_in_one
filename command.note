@@ -1,0 +1,5 @@
+personal.unlockAccount("0x5c8187b7434d4048fc74534e000fc9a546485944")
+eth.sendTransaction({from:"0xa40f6bf261914447987959ce26880d22eddf7dc6", to:"0x8ce2af810e9f790e0a6d9f023ff3b7c35984aaad", value:  web3.toWei(1, "ether")})
+eth.pendingTransactions
+miner.start(3); admin.sleepBlocks(1); miner.stop();
+
