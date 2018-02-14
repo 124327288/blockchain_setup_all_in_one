@@ -3,7 +3,7 @@ bootnode_addr=enode://"$(grep enode bootnode.log|tail -n 1|awk -F '://' '{print 
 
 echo bootnode=$bootnode_addr
 
-command='geth --datadir ./data/mine --networkid 10086 --ipcdisable --port 62000 --rpc --rpccorsdomain "*" --rpcport 8200 --bootnodes '$bootnode_addr' --mine --minerthreads=1 --etherbase=0x0000000000000000000000000000000000000001 console'
+command='geth --datadir ./data/mine --networkid 10086 --ipcdisable --port 62000 --rpc --rpccorsdomain "*" --rpcport 8200 --bootnodes '$bootnode_addr' --minerthreads=1 --etherbase=0x0000000000000000000000000000000000000001 console'
 
 echo '--------excute shell command:-----'
 echo $command

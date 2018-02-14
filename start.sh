@@ -4,6 +4,7 @@ function help() {
     echo '------help------'
     echo 'start.sh help, show helps'
     echo 'start.sh mine, start 1 thread miner with coinbase:0x000....001'
+    echo '  this will not mine automatically, you should use: miner.start()'
     echo 'start.sh [2 number] example: start.sh 00'
 }
 
@@ -18,6 +19,9 @@ if [ ! -f bootnode.log ];then
 fi
 
 ip=$(ifconfig|grep inet|grep -v inet6|grep broadcast|awk '{print $2}')
+if [ "$ip" == "" ]; then
+    ip=127.0.0.1
+fi
 bootnode_addr=enode://"$(grep enode bootnode.log|tail -n 1|awk -F '://' '{print $2}'|awk -F '@' '{print $1}')""@$ip:30301"
 
 
@@ -56,7 +60,7 @@ fi
 
 command=
 if [ "mine" == "$no" ];then
-    command='geth --datadir ./data/mine --networkid 10086 --ipcdisable --port 62000 --rpc --rpccorsdomain "*" --rpcport 8200 --bootnodes '$bootnode_addr' --mine --minerthreads=1 --etherbase=0x0000000000000000000000000000000000000001 console'
+    command='geth --datadir ./data/mine --networkid 10086 --ipcdisable --port 62000 --rpc --rpccorsdomain "*" --rpcport 8200 --bootnodes '$bootnode_addr' --minerthreads=1 --etherbase=0x0000000000000000000000000000000000000001 console'
 else
     command='geth --datadir ./data/'$no' --networkid 10086 --ipcdisable --port 619'$no' --rpc --rpccorsdomain "*" --rpcport 81'$no' --bootnodes '$bootnode_addr' console'
 fi

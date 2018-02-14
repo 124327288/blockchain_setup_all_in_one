@@ -1,3 +1,4 @@
 data
 *.log
-*.key
+*.key 
+.DS_store
