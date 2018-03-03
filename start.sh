@@ -58,11 +58,24 @@ if [ ! -d "$DIRECTORY" ]; then
     geth --datadir $datadir/$no init ./data/genesis 
 fi
 
+ #--wsaddr value    WS-RPC server listening interface (default: "localhost")
+  #--wsport value    WS-RPC server listening port (default: 8546)
+  #--wsapi value     API's offered over the WS-RPC interface (default: "eth,net,web3")
+  #--wsorigins value Origins from which to accept websockets requests
+
 command=
 if [ "mine" == "$no" ];then
-    command='geth --datadir ./data/mine --networkid 10086 --ipcdisable --port 62000 --rpc --rpccorsdomain "*" --rpcport 8200 --bootnodes '$bootnode_addr' --minerthreads=1 --etherbase=0x0000000000000000000000000000000000000001 console'
+    #http rpc call support
+    #command='geth --datadir ./data/mine --networkid 10086 --ipcdisable --port 62000 --rpc --rpccorsdomain "*" --rpcport 8200 --bootnodes '$bootnode_addr' --minerthreads=1 --etherbase=0x0000000000000000000000000000000000000001 console'
+
+    # websocket rpc call support
+    command='geth --datadir ./data/mine --networkid 10086 --ipcdisable --port 619'$no' --ws --wsaddr=localhost --wsport 85'$no' --wsapi "db,personal,eth,net,web3,debug" --wsorigins=* --bootnodes '$bootnode_addr' console'
 else
-    command='geth --datadir ./data/'$no' --networkid 10086 --ipcdisable --port 619'$no' --rpc --rpccorsdomain "*" --rpcport 81'$no' --bootnodes '$bootnode_addr' console'
+    #http rpc call support
+    #command='geth --datadir ./data/'$no' --networkid 10086 --ipcdisable --port 619'$no' --rpc --rpccorsdomain "*" --rpcport 81'$no' --bootnodes '$bootnode_addr' console'
+
+    # websocket rpc call support
+    command='geth --datadir ./data/'$no' --networkid 10086 --ipcdisable --port 619'$no' --ws --wsaddr=localhost --wsport 85'$no' --wsapi "db,personal,eth,net,web3,debug" --wsorigins=* --bootnodes '$bootnode_addr' console'
 fi
 
 echo '--------excute shell command:-----'
