@@ -59,23 +59,25 @@ if [ ! -d "$DIRECTORY" ]; then
 fi
 
  #--wsaddr value    WS-RPC server listening interface (default: "localhost")
-  #--wsport value    WS-RPC server listening port (default: 8546)
-  #--wsapi value     API's offered over the WS-RPC interface (default: "eth,net,web3")
-  #--wsorigins value Origins from which to accept websockets requests
+#--wsport value    WS-RPC server listening port (default: 8546)
+#--wsapi value     API's offered over the WS-RPC interface (default: "eth,net,web3")
+#--wsorigins value Origins from which to accept websockets requests
 
 command=
 if [ "mine" == "$no" ];then
     #http rpc call support
     #command='geth --datadir ./data/mine --networkid 10086 --ipcdisable --port 62000 --rpc --rpccorsdomain "*" --rpcport 8200 --bootnodes '$bootnode_addr' --minerthreads=1 --etherbase=0x0000000000000000000000000000000000000001 console'
-
     # websocket rpc call support
     command='geth --datadir ./data/mine --networkid 10086 --ipcdisable --port 619'$no' --ws --wsaddr=localhost --wsport 85'$no' --wsapi "db,personal,eth,net,web3,debug" --wsorigins=* --bootnodes '$bootnode_addr' console'
+
+elif [ "remix" == "$no" ];then
+    #echo 'geth --datadir ./data/00 --rpc --rpcapi ''db,net,admin,miner,eth,web3,debug,personal'' --rpcport 8545 --rpccorsdomain '*' --etherbase=0x0000000000000000000000000000000000000001 console'
+    geth --datadir ./data/00 --rpc --rpcapi 'db,net,admin,miner,eth,web3,debug,personal' --rpcport 8545 --rpccorsdomain '*' --ws --wsaddr=localhost --wsport 8500 --wsapi "db,personal,eth,net,web3,debug" --wsorigins=* --etherbase=0x0000000000000000000000000000000000000001 console
 else
     #http rpc call support
     #command='geth --datadir ./data/'$no' --networkid 10086 --ipcdisable --port 619'$no' --rpc --rpccorsdomain "*" --rpcport 81'$no' --bootnodes '$bootnode_addr' console'
-
     # websocket rpc call support
-    command='geth --datadir ./data/'$no' --networkid 10086 --ipcdisable --port 619'$no' --ws --wsaddr=localhost --wsport 85'$no' --wsapi "db,personal,eth,net,web3,debug" --wsorigins=* --bootnodes '$bootnode_addr' console'
+    command='geth --datadir ./data/'$no' --networkid 10086 --ipcdisable --port 619'$no' --rpc -rpcapi 'db,net,admin,miner,eth,web3,debug,personal' --rpccorsdomain "*" --rpcport 81'$no' --ws --wsaddr=127.0.0.1 --wsport 85'$no' --wsapi "db,personal,eth,net,web3,debug" --wsorigins=* --bootnodes '$bootnode_addr' console'
 fi
 
 echo '--------excute shell command:-----'
