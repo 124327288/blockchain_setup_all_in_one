@@ -21,7 +21,7 @@ var balance = zltkContract.balanceOf(address).div(1e18);
 balance
 
 
-curl -l -H "Content-type: application/json" -X POST http://localhost:8100 --data '{"jsonrpc":"2.0","method":"eth_getTransactionByHash","params":["0x2f8f91210ae367750dcbad0cbed823ecd68ace2d0974549813c8cc0faea0156a"],"id":1}'
+curl -l -H "Content-type: application/json" -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"eth_getTransactionByHash","params":["0x2f8f91210ae367750dcbad0cbed823ecd68ace2d0974549813c8cc0faea0156a"],"id":1}'
 
 
 curl -s -H "Content-type: application/json" -X POST --data '{"jsonrpc":"2.0", "method":"eth_getBalance", "params":["0xa40f6bf261914447987959ce26880d22eddf7dc6", "latest"], "id":1}' http://127.0.01:8545
@@ -33,3 +33,6 @@ var contractAbi = eth.contract(AbiOfContract);
 var myContract = contractAbi.at(contractAddress);
 var getData = myContract.myFunction.getData(function parameters);
 web3.eth.sendTransaction({to:Contractaddress, from:Accountaddress, data: getData});
+
+
+
