@@ -52,7 +52,7 @@ if [ ! -d "$DIRECTORY" ]; then
         echo account1=$address1
         echo account1=$address2
 
-        echo '{"config": {"chainId": 15, "homesteadBlock": 0, "eip155Block": 0, "eip158Block": 0 }, "coinbase" : "0x0000000000000000000000000000000000000001", "difficulty" : "0x100000", "extraData" : "", "gasLimit" : "0xffffffff", "nonce" : "0x0000000000000042", "mixhash" : "0x0000000000000000000000000000000000000000000000000000000000000000", "parentHash" : "0x0000000000000000000000000000000000000000000000000000000000000000", "timestamp" : "0x00", "alloc": {"'$address1'":{"balance":"100000000000000000000000"}, "'$address2'":{"balance":"100000000000000000000000"} } }' > $datadir/genesis
+        echo '{"config": {"chainId": 15, "ByzantiumBlock": 0, "homesteadBlock": 0, "eip155Block": 0, "eip158Block": 0 }, "coinbase" : "0x0000000000000000000000000000000000000001", "difficulty" : "0x100000", "extraData" : "", "gasLimit" : "0xffffffff", "nonce" : "0x0000000000000042", "mixhash" : "0x0000000000000000000000000000000000000000000000000000000000000000", "parentHash" : "0x0000000000000000000000000000000000000000000000000000000000000000", "timestamp" : "0x00", "alloc": {"'$address1'":{"balance":"100000000000000000000000"}, "'$address2'":{"balance":"100000000000000000000000"} } }' > $datadir/genesis
     fi
 
     geth --datadir $datadir/$no init ./data/genesis 
