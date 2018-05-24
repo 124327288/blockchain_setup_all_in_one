@@ -1,0 +1,19 @@
+eth.accounts
+eth.getBalance(eth.accounts[0])
+miner.start();admin.sleepBlocks(2);miner.stop()
+eth.accounts
+miner.start();admin.sleepBlocks(2);miner.stop()
+eth.getTransactionReceipt("0xaa36afa141cd6ea42afbc7aba3699612641df6537280bea893fee8f5952ad92e")
+eth.accounts
+eth.getBalance("0xc1cfd731f440fa8fb8ed1b24056a514ffd36ef32")
+eth.getBalance("0x69f7337302aec7f6ae7915db3f31da865214e771")
+eth.getAccounts
+eth.getAccounts()
+eth.getAccounts("ko2005,./123eth")
+eth.accounts
+eth.sendTransaction({from:"0x69f7337302aec7f6ae7915db3f31da865214e771", to:"0x43a957847d88c019c621847b1bd1b917741dbe3a", value:web3.toWei(100, "ether")})
+miner.start();admin.sleepBlocks(2);miner.stop()
+eth.getBalance("0x43a957847d88c019c621847b1bd1b917741dbe3a")
+eth.getTransactionReceipt("0xab52c657b55c78ea642e3056cb15c4af0a457700b193fc39fae90f307f45698b")
+eth.accounts
+miner.start();admin.sleepBlocks(2);miner.stop()
