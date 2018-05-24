@@ -2,10 +2,11 @@
 
 function help() {
     echo '------help------'
-    echo 'start.sh help, show helps'
-    echo 'start.sh mine, start 1 thread miner with coinbase:0x000....001'
+    echo './start.sh help, show helps'
+    echo './start.sh mine, start 1 thread miner with coinbase:0x000....001'
     echo '  this will not mine automatically, you should use: miner.start()'
-    echo 'start.sh [2 number] example: start.sh 00'
+    echo './start.sh [2 number] example: start.sh 00'
+    echo './strat.sh remix start eth nodde as remix web3 provider'
 }
 
 if [ "$1" == "help" ]; then 
@@ -24,13 +25,10 @@ if [ "$ip" == "" ]; then
 fi
 bootnode_addr=enode://"$(grep enode bootnode.log|tail -n 1|awk -F '://' '{print $2}'|awk -F '@' '{print $1}')""@$ip:30301"
 
-
-
 if [ "$1" == "" ];then
     echo "node id is empty, please use: start.sh <node_id>";
     exit
 fi
-
 
 
 no=$1
@@ -58,7 +56,7 @@ if [ ! -d "$DIRECTORY" ]; then
     geth --datadir $datadir/$no init ./data/genesis 
 fi
 
- #--wsaddr value    WS-RPC server listening interface (default: "localhost")
+#--wsaddr value    WS-RPC server listening interface (default: "localhost")
 #--wsport value    WS-RPC server listening port (default: 8546)
 #--wsapi value     API's offered over the WS-RPC interface (default: "eth,net,web3")
 #--wsorigins value Origins from which to accept websockets requests
