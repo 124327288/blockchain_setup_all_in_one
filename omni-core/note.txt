@@ -1,0 +1,36 @@
+omni_sendissuancefixed "mmztibmBsXh3ezygzAMN52CtfCUwPWzXMy" 2 2 0 "zl03jsj@163.com" "zl03jsj@163.com" "ZToken" "zl03jsj@163.com" "ZToken_divisible" "10000000"
+
+
+child index:1,
+virtual private key:1af172762746ae5722948e342a0abddb01000000xGU55VythhpMhHkHcJ9tP2x1,
+real private key:cTwx1uw9eRXh13zpFt28Y6P2k1crKfBx31F6cg7Z4F2mGZWueN7J,
+address string:mmztibmBsXh3ezygzAMN52CtfCUwPWzXMy
+
+
+omni_sendissuancefixed "fromaddress" ecosystem type previousid "category" "subcategory" "name" "url" "data" "amount"
+
+Create new tokens with fixed supply.
+
+Arguments:
+1. fromaddress          (string, required) the address to send from
+2. ecosystem            (string, required) the ecosystem to create the tokens in (1 for main ecosystem, 2 for test ecosystem)
+3. type                 (number, required) the type of the tokens to create: (1 for indivisible tokens, 2 for divisible tokens)
+4. previousid           (number, required) an identifier of a predecessor token (use 0 for new tokens)
+5. category             (string, required) a category for the new tokens (can be "")
+6. subcategory          (string, required) a subcategory for the new tokens  (can be "")
+7. name                 (string, required) the name of the new tokens to create
+8. url                  (string, required) an URL for further information about the new tokens (can be "")
+9. data                 (string, required) a description for the new tokens (can be "")
+10. amount              (string, required) the number of tokens to create
+
+Result:
+"hash"                  (string) the hex-encoded transaction hash
+
+Examples:
+> omnicore-cli omni_sendissuancefixed "3Ck2kEGLJtZw9ENj2tameMCtS3HB7uRar3" 2 1 0 "Companies" "Bitcoin Mining" "Quantum Miner" "" "" "1000000"
+> curl --user myusername --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "omni_sendissuancefixed", "params": ["3Ck2kEGLJtZw9ENj2tameMCtS3HB7uRar3", 2, 1, 0, "Companies", "Bitcoin Mining", "Quantum Miner", "", "", "1000000"] }' -H 'content-type: text/plain;' http://127.0.0.1:8332/
+ (code -1)
+
+omni_sendissuancefixed "mmztibmBsXh3ezygzAMN52CtfCUwPWzXMy" 2 1 0 "zl03jsj@163.com" "zl03jsj@163.com" "ZToken" "zl03jsj@163.com" "ZToken_indivisible" "10000000"
+
+omni_sendissuancefixed "mmztibmBsXh3ezygzAMN52CtfCUwPWzXMy" 2 2 0 "zl03jsj@163.com" "zl03jsj@163.com" "ZToken" "zl03jsj@163.com" "ZToken_divisible" "10000000"
