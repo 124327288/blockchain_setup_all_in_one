@@ -14,7 +14,7 @@ function updateCurrentPath() {
 
 updateCurrentPath
 
-configerFile=$CurrentDIR/omni.conf
+configerFile=$CurrentDIR/wincoin.conf
 dataDir=$CurrentDIR/data/
 
 echo configfile=$configerFile
@@ -25,4 +25,4 @@ if [ ! -d "$datadir" ]; then
     mkdir -p $dataDir
 fi
 
-omnicore-qt -conf=$configerFile -datadir=$dataDir -deprecatedrpc=accounts
+./WinCoin-Qt.app/Contents/MacOS/WinCoin-Qt -conf=$configerFile -printtoconsole -datadir=$dataDir -deprecatedrpc=accounts

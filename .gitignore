@@ -2,3 +2,4 @@ data
 *.log
 *.key 
 .DS_store
+*.app/
