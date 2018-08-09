@@ -78,7 +78,7 @@ else
     command='geth --datadir ./data/'$no' --networkid 10086 --ipcdisable --port 619'$no' --rpc -rpcapi 'db,net,admin,miner,eth,web3,debug,personal' --rpccorsdomain "*" --rpcport 81'$no' --ws --wsaddr=127.0.0.1 --wsport 85'$no' --wsapi "db,personal,eth,net,web3,debug" --wsorigins=* --bootnodes '$bootnode_addr' console'
 fi
 
-echo '--------excute shell command:-----'
+$echo '--------excute shell command:-----'
 echo $command
 echo '----------------------------------'
 
