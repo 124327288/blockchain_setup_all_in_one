@@ -3,3 +3,4 @@ data
 *.key 
 .DS_store
 *.app/
+eos/node*/
