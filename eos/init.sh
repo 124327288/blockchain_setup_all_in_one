@@ -22,6 +22,7 @@ if [ "$password" = "" ]; then
     exit
 fi
 
+
 ## ${varible##*string}   从左向右截取最后一个string后的字符串
 ## ${varible#*string}    从左向右截取第一个string后的字符串
 ## ${varible%%string*}   从右向左截取最后一个string后的字符串
@@ -37,9 +38,17 @@ echo ---------------unlock wallet: $wallet---------------
 cleos wallet unlock -n $wallet --password $password
 
 echo ---------------import keys---------------
-cleos wallet import $owner_pri_key -n $wallet 
-cleos wallet import $active_pri_key -n $wallet 
+cleos wallet import $owner_pri_key -n $wallet
+cleos wallet import $active_pri_key -n $wallet
 
+echo ---------------set eosio contract 'eosio.system'---------------
+contractdir=/Users/cengliang/code/eos/build/contracts/eosio.system
+wastfile=$contractdir/eosio.system.wast
+abifile=$contractdir/eosio.system.abi
+cleos set contract eosio $contractdir $wastfile $abifile
+echo 
+
+sleep 1s
 
 echo ---------------create account 'eosio.token'---------------
 cleos create account eosio eosio.token $owner_pub_key $active_pub_key
@@ -58,18 +67,20 @@ cleos set contract eosio.token $contractdir $wastfile $abifile
 echo
 
 sleep 1s
-echo -------------------------token code hash-------------------------
+echo -------------------------eosio.token token code hash-------------------------
 echo cleos get code eosio.token
 cleos get code eosio.token
 echo
 
-echo -------------------------create token 'ZTK'-------------------------
-cleos push action eosio.token create '{"issuer":"eosio.token","maximum_supply":"1000000.0000 ZTK","can_freeze":"0","can_recall":"0","can_whitelist":"0"}' --permission eosio.token
+echo -------------------------create token 'EOS'-------------------------
+
+#cleos push action eosio.token create '["eosio","1000000000.0000 EOS",0,0,0]' -p eosio.token
+cleos push action eosio.token create '{"issuer":"eosio.token","maximum_supply":"1000000.0000 EOS","can_freeze":"0","can_recall":"0","can_whitelist":"0"}' --permission eosio.token
 echo
 
 sleep 1s
-echo ---------------issure token 'ZTK'---------------
-cleos push action eosio.token issue '{"to":"eosio.token","quantity":"1000.0000 ZTK","memo":""}' --permission eosio.token
+echo ---------------issure token 'EOS'---------------
+cleos push action eosio.token issue '{"to":"eosio","quantity":"1000000.0000 EOS","memo":""}' --permission eosio.token
 echo
 
 sleep 1s
@@ -78,7 +89,7 @@ cleos get table eosio.token eosio.token accounts
 echo
 
 echo ---------------send token from 'eosio.token' to 'eosio'---------------
-cleos push action eosio.token transfer '{"from":"eosio.token","to":"eosio","quantity":"20.0000 ZTK","memo":"my first transfer"}' --permission eosio.token
+cleos push action eosio.token transfer '{"from":"eosio","to":"eosio.token","quantity":"20.0000 EOS","memo":"my first transfer"}' --permission eosio
 echo
 
 echo ---------------show eosio balance---------------

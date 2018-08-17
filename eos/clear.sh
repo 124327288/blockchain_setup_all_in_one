@@ -14,7 +14,7 @@ function updateCurrentPath() {
 
 updateCurrentPath
 
-datadir=$CurrentDIR/node-00
+datadir=$CurrentDIR/data
 walletdir=/Users/cengliang/eosio-wallet
 
 if [ -d "$datadir" ]; then

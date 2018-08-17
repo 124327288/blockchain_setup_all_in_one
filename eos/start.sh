@@ -1,3 +1,4 @@
+#!/bin/sh
 CurrentDIR=
 
 function updateCurrentPath() {
@@ -20,17 +21,11 @@ fi
 
 # nodeos=/Users/cengliang/code/eos/build/programs/nodeos/nodeos
 nodeos=nodeos
+
 configerdir=$CurrentDIR/configer
-datadir=$CurrentDIR/node-00
-genesisfile=$configerdir/genesis.json
+datadir=$CurrentDIR/data/
+genesis='--genesis-json /Users/cengliang/code/startup-chains/eos/configer/genesis.json'
 
+$nodeos --config-dir $configerdir --data-dir $datadir $mine
 
-# if [ ! -d "$datadir" ]; then
-#     mkdir -p $datadir
-# fi
-
-$nodeos --config-dir $configerdir --data-dir $datadir --filter-on eosio:transfer: $mine 
-
-#$nodeos --config-dir $configerdir  --config $configerdir/config.ini --genesis-json ./configer/genesis.json -d $datadir -e -p eosio.zl
-
-# $nodeos -e -p eosio --plugin eosio::chain_api_plugin --plugin eosio::history_api_plugin
+# $nodeos --config-dir $configerdir --data-dir /Users/cengliang/code/startup-chains/eos/data --genesis-json /Users/cengliang/code/startup-chains/eos/configer/genesis.json
