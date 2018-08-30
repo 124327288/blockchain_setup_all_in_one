@@ -23,9 +23,10 @@ fi
 nodeos=nodeos
 
 configerdir=$CurrentDIR/configer
+configfilename=config.ini
 datadir=$CurrentDIR/data/
-genesis='--genesis-json /Users/cengliang/code/startup-chains/eos/configer/genesis.json'
+genesis='--genesis-json '$configerdir'/genesis.json'
 
-$nodeos --config-dir $configerdir --data-dir $datadir $mine
+$nodeos --config-dir $configerdir -c $configfilename --data-dir $datadir $mine
 
 # $nodeos --config-dir $configerdir --data-dir /Users/cengliang/code/startup-chains/eos/data --genesis-json /Users/cengliang/code/startup-chains/eos/configer/genesis.json

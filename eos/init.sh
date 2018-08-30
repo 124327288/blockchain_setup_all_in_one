@@ -8,7 +8,7 @@ if [ "$wallet" == "" ]; then
     wallet="default"
 fi
 
-password=`$(echo "cleos wallet create -n $wallet")`
+password=`$(echo "cleos wallet create -n $wallet" --to-console)`
 password=${password%\"*}
 password=${password##*\"}
 
@@ -38,20 +38,27 @@ echo ---------------unlock wallet: $wallet---------------
 cleos wallet unlock -n $wallet --password $password
 
 echo ---------------import keys---------------
-cleos wallet import $owner_pri_key -n $wallet
-cleos wallet import $active_pri_key -n $wallet
+cleos wallet import --private-key $owner_pri_key  -n $wallet
+cleos wallet import --private-key $active_pri_key -n $wallet
+cleos wallet import --private-key 5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3 -n $wallet
 
-echo ---------------set eosio contract 'eosio.system'---------------
-contractdir=/Users/cengliang/code/eos/build/contracts/eosio.system
-wastfile=$contractdir/eosio.system.wast
-abifile=$contractdir/eosio.system.abi
-cleos set contract eosio $contractdir $wastfile $abifile
-echo 
+#echo ---------------set eosio contract 'eosio.system'---------------
+#contractdir=/Users/cengliang/code/eos/build/contracts/eosio.system
+#wasmfile=eosio.system.wasm
+#abifile=eosio.system.abi
+#cleos set contract eosio $contractdir $wasmfile $abifile
+#
+#
+#echo 
 
 sleep 1s
-
 echo ---------------create account 'eosio.token'---------------
-cleos create account eosio eosio.token $owner_pub_key $active_pub_key
+cleos create account eosio eosio.token $owner_pub_key $active_pub_key --permission eosio@active
+sleep 1s
+cleos create account eosio user.1      $owner_pub_key $active_pub_key --permission eosio@active
+sleep 1s
+cleos create account eosio user.2      $owner_pub_key $active_pub_key --permission eosio@active
+
 echo
 
 sleep 1s
@@ -61,9 +68,9 @@ echo
 
 echo ---------------create token with 'eosio.token'---------------
 contractdir=/Users/cengliang/code/eos/build/contracts/eosio.token
-wastfile=$contractdir/eosio.token.wast
-abifile=$contractdir/eosio.token.abi
-cleos set contract eosio.token $contractdir $wastfile $abifile
+wasmfile=eosio.token.wasm
+abifile=eosio.token.abi
+cleos set contract eosio.token $contractdir $wasmfile $abifile
 echo
 
 sleep 1s
@@ -92,6 +99,14 @@ echo ---------------send token from 'eosio.token' to 'eosio'---------------
 cleos push action eosio.token transfer '{"from":"eosio","to":"eosio.token","quantity":"20.0000 EOS","memo":"my first transfer"}' --permission eosio
 echo
 
+cleos push action eosio.token transfer '{"from":"eosio","to":"user.1","quantity":"20.0000 EOS","memo":"send 20 to user.1"}' --permission eosio
+cleos push action eosio.token transfer '{"from":"eosio","to":"user.2","quantity":"20.0000 EOS","memo":"send 20 to user.2"}' --permission eosio
+
 echo ---------------show eosio balance---------------
 cleos get table eosio.token eosio accounts
 
+
+echo ---------------show user.1 actions---------------
+cleos get actions user.1 0 10
+echo ---------------show user.2 actions---------------
+cleos get actions user.2 0 10
