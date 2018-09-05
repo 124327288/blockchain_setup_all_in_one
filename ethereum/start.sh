@@ -15,8 +15,8 @@ if [ "$1" == "help" ]; then
 fi
 
 if [ ! -f bootnode.log ];then
-    echo "please run bootnode.sh first"
-    exit
+    ./bootnode.sh
+    sleep 1s
 fi
 
 ip=$(ifconfig|grep inet|grep -v inet6|grep broadcast|awk '{print $2}')

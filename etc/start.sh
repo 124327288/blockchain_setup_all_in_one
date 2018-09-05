@@ -15,8 +15,8 @@ if [ "$1" == "help" ]; then
 fi
 
 if [ ! -f bootnode.log ];then
-    echo "please run bootnode.sh first"
-    exit
+    ./bootnode.sh
+    sleep 1s
 fi
 
 ip=$(ifconfig|grep inet|grep -v inet6|grep broadcast|awk '{print $2}'|head -n 1)
@@ -51,8 +51,8 @@ if [ ! -f "$datadir/$no/privnet/chain.json" ]; then
     password_file=$datadir/$no"/password.txt"
 
     echo ko2005,./123eth > $password_file
-    geth --datadir=$datadir/$no --chain privnet --password $password_file account new > $datadir/$no"/account1.txt"
-    geth --datadir=$datadir/$no --chain privnet --password $password_file account new > $datadir/$no"/account2.txt"
+    etc --datadir=$datadir/$no --chain privnet --password $password_file account new > $datadir/$no"/account1.txt"
+    etc --datadir=$datadir/$no --chain privnet --password $password_file account new > $datadir/$no"/account2.txt"
 
     address1=`awk  '{print $2}' $datadir/$no"/account1.txt"`
     address2=`awk  '{print $2}' $datadir/$no"/account2.txt"`
@@ -68,10 +68,10 @@ fi
 command=
 
 if [ "remix" == "$no" ];then
-    geth --datadir ./data/00 --chain privnet --verbosity 6 --networkid 10086 --rpc --rpcapi 'db,net,admin,miner,eth,web3,debug,personal' --rpcport 8545 --rpccorsdomain '*' --ws --wsaddr=localhost --wsport 8500 --wsapi "db,personal,eth,net,web3,debug" --wsorigins=* --etherbase=0x0000000000000000000000000000000000000001 console
+    etc --datadir ./data/00 --chain privnet --verbosity 6 --networkid 10086 --rpc --rpcapi 'db,net,admin,miner,eth,web3,debug,personal' --rpcport 8545 --rpccorsdomain '*' --ws --wsaddr=localhost --wsport 8500 --wsapi "db,personal,eth,net,web3,debug" --wsorigins=* --etherbase=0x0000000000000000000000000000000000000001 console
 
 else
-    command='geth --datadir ./data/'$no' --chain privnet --verbosity 6 --networkid 10086 --ipcdisable --port 619'$no' --rpc -rpcapi 'db,net,admin,miner,eth,web3,debug,personal' --rpccorsdomain "*" --rpcport 81'$no' --ws --wsaddr=127.0.0.1 --wsport 85'$no' --wsapi "db,personal,eth,net,web3,debug" --wsorigins=* '$mine' --bootnodes '$bootnode_addr'  console'
+    command='etc --datadir ./data/'$no' --chain privnet --verbosity 6 --networkid 10086 --ipcdisable --port 619'$no' --rpc -rpcapi 'db,net,admin,miner,eth,web3,debug,personal' --rpccorsdomain "*" --rpcport 81'$no' --ws --wsaddr=127.0.0.1 --wsport 85'$no' --wsapi "db,personal,eth,net,web3,debug" --wsorigins=* '$mine' --bootnodes '$bootnode_addr'  console'
 fi
 
 echo --------excute shell command:-----
