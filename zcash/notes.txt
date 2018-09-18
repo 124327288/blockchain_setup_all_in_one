@@ -1,0 +1,6 @@
+new account success, result:{
+  "PrivateKey": "8e895fbc4ef240b53d0506c78983aaae01000000PBFxOMKrZjceX7jwsXRgx9D0",
+  "Address": "tmPdykhWQnqWtyjX5LctLfDzTyfdMJhvQg4"
+}
+
+transfer --fromkey 8e895fbc4ef240b53d0506c78983aaae01000000PBFxOMKrZjceX7jwsXRgx9D0 --from tmPdykhWQnqWtyjX5LctLfDzTyfdMJhvQg4 --to tmGWDCf9LokZv14o97m1WY5NpaMHseDHh5e --value 2
