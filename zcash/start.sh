@@ -10,6 +10,14 @@ function current_dir() {
     echo $( cd -P "$( dirname "$SOURCE" )" && pwd )
 }
 
+function get_psid() {
+    if [  "$#" == "0" ]; then
+        echo ""
+    fi
+    echo `ps -ef|grep -v grep|grep zcashd|awk '{print $2}'`
+}
+
+
 current_dir=$(current_dir)
 
 configerfile=$current_dir/zcash.conf
@@ -20,5 +28,16 @@ if [ ! -d "$datadir" ]; then
     mkdir -p $dataDir
 fi
 
+psid=$(get_psid)
+
+if [ "$psid" != "" ]; then 
+    echo zcashd still runing, process id:$psid
+    exit
+fi
+
 zcash=~/code/chain_src/zcash-apple/out/usr/local/bin/zcashd
-$zcash -conf=$configerfile -datadir=$dataDir
+$zcash -conf=$configerfile -datadir=$dataDir -nuparams=5ba81b19:101 -daemon
+
+sleep 1s
+psid=$(get_psid)
+echo zcash process id: $psid

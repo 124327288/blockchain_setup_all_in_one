@@ -4,3 +4,26 @@ new account success, result:{
 }
 
 transfer --fromkey 8e895fbc4ef240b53d0506c78983aaae01000000PBFxOMKrZjceX7jwsXRgx9D0 --from tmPdykhWQnqWtyjX5LctLfDzTyfdMJhvQg4 --to tmGWDCf9LokZv14o97m1WY5NpaMHseDHh5e --value 2
+
+import_address tmRP5LHGL5wYtR1u78LwwhhXzPKPFRi5wX6
+import_address tmPXaZyFwB8jE9fC53FabDNgkHCsyeNsT1Q
+
+
+"PrivateKey" : "0378ee361b9b739d915b1c6b70da30c301000000GfBkdxdpfwP657fdpIV3ucw2",
+"realPrivkey": "cVpJKAxu8GhBLdyufUp2XcLJuxznm96qG2KA2REqBgKEyCARwCpX"
+"Address":     "tm9rHiemmVqYzRmvdvv4ZtffbdLGp2XGfzq"
+
+"PrivateKey":  "0f0808a0c5558f6d7393bcd56502ac8f01000000MLa4Yt8R7QZyKsrOaheXefB3",
+"realPrivkey": "cPjkT4hJGRtj6MFuGKNg35BcMb9vvLg7t8Bo9NobZw3sncajy3KA"
+"Address":     "tmRP5LHGL5wYtR1u78LwwhhXzPKPFRi5wX6"
+
+"PrivateKey":  "50e102a6aca8c2352226f849b27c271801000000rOnghTDaIs5rItQLDldLwMF4",
+"realPrivkey": "cR2s6Rdt9cbsLNSgsksHw1Ha1PduJkWMEj8efFHHjFSKHyg9rpea" 
+"Address":     "tmPXaZyFwB8jE9fC53FabDNgkHCsyeNsT1Q"
+
+./zcash-cli.sh createrawtransaction "[{\"txid\":\"5aefa0ab8519523c375830d64f639668cd309d03e06f12bfe07a65af41d8a8f4\",\"vout\":0}]" "{\"tm9rHiemmVqYzRmvdvv4ZtffbdLGp2XGfzq\":2.9999644,\"tmRP5LHGL5wYtR1u78LwwhhXzPKPFRi5wX6\":2}"
+
+
+transfer --fkey 0378ee361b9b739d915b1c6b70da30c301000000GfBkdxdpfwP657fdpIV3ucw2 --from tm9rHiemmVqYzRmvdvv4ZtffbdLGp2XGfzq --to tmRP5LHGL5wYtR1u78LwwhhXzPKPFRi5wX6 -v 0.1
+
+transfer --fkey 0f0808a0c5558f6d7393bcd56502ac8f01000000MLa4Yt8R7QZyKsrOaheXefB3 --from tmRP5LHGL5wYtR1u78LwwhhXzPKPFRi5wX6 --to tmPXaZyFwB8jE9fC53FabDNgkHCsyeNsT1Q -v 0.10036792
