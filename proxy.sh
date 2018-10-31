@@ -8,39 +8,45 @@ function show_usage() {
     echo '  '-e'    'to enable or disable proxy, [yes/true/1] for enable\; [no/false/0] for disable
     echo '  '-h'    'show help
     echo example:
-    echo '  'set_proxy.sh -a git -e true'       'git proxy on
-    echo '  'set_proxy.sh on'                   'git, console proxy on
-    echo '  'set_proxy.sh off'                  'git, console proxy off
+    echo '  'proxy.sh -a git -e true'       'git proxy on
+    echo '  'proxy.sh on'                   'git, console proxy on
+    echo '  'proxy.sh off'                  'git, console proxy off
 }
 
 function enable_console() {
-    export http_proxy=https://127.0.0.1:50361
-    export https_proxy=https://127.0.0.1:50361
-    echo enable console proxy success
+    #export http_proxy=https://127.0.0.1:50361
+    #export https_proxy=https://127.0.0.1:50361 
+    export http_proxy=socks5://127.0.0.1:50363
+    export https_proxy=socks5://127.0.0.1:50363
+}
+
+function show_config() {
+    echo --------------current http configuration--------------
+    echo http.proxy=$http_proxy
+    echo https.proxy=$https_proxy
+    echo --------------current git configuration--------------
+    echo git.http.proxy=`git config --global http.proxy`
+    echo git.https.proxy=`git config --global https.proxy`
 }
 
 function disable_console() {
     export http_proxy=
     export https_proxy=
-    echo disable console proxy success
 }
 
 function enable_git() {
     git config --global http.proxy https://127.0.0.1:50361
     git config --global https.proxy https://127.0.0.1:50361
-    echo enable git proxy success
 }
 
 function disable_git() {
     git config --global --unset http.proxy
     git config --global --unset https.proxy
-    echo disable git proxy success
 }
 
 function enable_all() {
     enable_git
     enable_console
-
 }
 
 function disable_all() {
@@ -80,6 +86,7 @@ else
     esac
 fi
 
+show_config
 
 
 
