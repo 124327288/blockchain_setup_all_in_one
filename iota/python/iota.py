@@ -12,6 +12,9 @@ headers = {
     'X-IOTA-API-Version':'1'
 }
 
+url = "https://nodes.devnet.thetangle.org:443"
+# url = "https://nodes.thetangle.org:443"
+
 def read_args() :
     return raw_input("\n>>inputs>>:\n").split()
 
@@ -22,7 +25,7 @@ def do_command(cmd, param):
         command = dict(command, **jsonargs)
 
     jsonData = json.dumps(command)
-    request = urllib2.Request(url="https://nodes.thetangle.org:443", data=jsonData, headers=headers)
+    request = urllib2.Request(url=url, data=jsonData, headers=headers)
     returnData = urllib2.urlopen(request).read()
 
     jsonfmt = json.dumps(json.loads(returnData))
