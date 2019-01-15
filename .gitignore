@@ -4,3 +4,6 @@ data
 .DS_store
 *.app/
 eos/node*/
+ethereum/owgc-geth.tgz
+owgc/geth-linux
+owgc/geth-mac

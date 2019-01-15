@@ -36,7 +36,7 @@ if [ "$psid" != "" ]; then
 fi
 
 bitcoind=~/code/chain_src/bitcoin/src/bitcoind
-$bitcoind -conf=$conffile  -daemon
+$bitcoind -conf=$conffile  -deprecatedrpc=generate -daemon
 
 sleep 1s
 psid=$(get_psid)

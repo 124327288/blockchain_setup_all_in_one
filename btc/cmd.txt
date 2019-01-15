@@ -1,0 +1,1 @@
+transfer --fkey 1af172762746ae5722948e342a0abddb01000000xGU55VythhpMhHkHcJ9tP2x1 --from mmztibmBsXh3ezygzAMN52CtfCUwPWzXMy --to mnXM8CCyXmzBZM1d11rUax4XBv4bYDNhJ6 --value 1
