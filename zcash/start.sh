@@ -36,7 +36,11 @@ if [ "$psid" != "" ]; then
 fi
 
 zcash=~/code/chain_src/zcash-apple/out/usr/local/bin/zcashd
-$zcash -conf=$configerfile -datadir=$dataDir -nuparams=5ba81b19:101 -daemon
+
+# activate overwinter
+#$zcash -conf=$configerfile -datadir=$dataDir -nuparams=5ba81b19:101 -daemon
+#activate sapling 
+$zcash -conf=$configerfile -datadir=$dataDir -nuparams=5ba81b19:101 -nuparams=76b809bb:120 -daemon
 
 sleep 1s
 psid=$(get_psid)
