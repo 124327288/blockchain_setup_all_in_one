@@ -34,3 +34,57 @@ Examples:
 omni_sendissuancefixed "mmztibmBsXh3ezygzAMN52CtfCUwPWzXMy" 2 1 0 "zl03jsj@163.com" "zl03jsj@163.com" "ZToken" "zl03jsj@163.com" "ZToken_indivisible" "10000000"
 
 omni_sendissuancefixed "mmztibmBsXh3ezygzAMN52CtfCUwPWzXMy" 2 2 0 "zl03jsj@163.com" "zl03jsj@163.com" "ZToken" "zl03jsj@163.com" "ZToken_divisible" "10000000"
+
+
+cTXommfMPSgbzBLF6165wMzF7Ch7LCLiCdMEJGDKvxXekxjMwd5Q
+n3MoUv3MW87AJQ9SKzidEA8RHyUwhixw7t
+
+
+
+// TOKEN SENDER
+"PrivateKey": "e4d6a2baf4552e470064400c7863cef901000000C7BEfUAx0bPcU92urISbgyac",
+"Address": "n3aE47Usp7ZDBje5QvCj4gWtn1Wjh9iMv5"
+
+// TOKEN RECEIVER
+"PrivateKey": "58d09c59f0a728180813c68c958f51dc010000009Z8KCj7WgymEXzMiclV30wwd",
+"Address": "n1qsiUPQTVCRmt2pKSEQpS44SF6tPYLr7H"
+
+importprivkey cTXommfMPSgbzBLF6165wMzF7Ch7LCLiCdMEJGDKvxXekxjMwd5Q "default"
+importaddress n3aE47Usp7ZDBje5QvCj4gWtn1Wjh9iMv5 "watchonly_addresses"
+importaddress n1qsiUPQTVCRmt2pKSEQpS44SF6tPYLr7H "watchonly_addresses"
+
+sendtoaddress n3MoUv3MW87AJQ9SKzidEA8RHyUwhixw7t 20
+omni_sendissuancefixed "n3MoUv3MW87AJQ9SKzidEA8RHyUwhixw7t" 2 2 0 "zl03jsj@163.com" "zl03jsj@163.com" "ZToken" "zl03jsj@163.com" "ZToken_divisible" "10000000"
+
+omni_send n3MoUv3MW87AJQ9SKzidEA8RHyUwhixw7t n3aE47Usp7ZDBje5QvCj4gWtn1Wjh9iMv5 2147483651 100
+
+registtoken --symbol ZToken --account 2147483651
+
+get_balance --account n3aE47Usp7ZDBje5QvCj4gWtn1Wjh9iMv5 --token ZToken
+get_balance --account n3aE47Usp7ZDBje5QvCj4gWtn1Wjh9iMv5
+get_balance --account n1qsiUPQTVCRmt2pKSEQpS44SF6tPYLr7H --token ZToken
+get_balance --account n1qsiUPQTVCRmt2pKSEQpS44SF6tPYLr7H
+
+// token sender and txfee payer is different
+transfer --fromkey 58d09c59f0a728180813c68c958f51dc010000009Z8KCj7WgymEXzMiclV30wwd --sender n3aE47Usp7ZDBje5QvCj4gWtn1Wjh9iMv5 --receiver n1qsiUPQTVCRmt2pKSEQpS44SF6tPYLr7H --token ZToken --tksenderkey e4d6a2baf4552e470064400c7863cef901000000C7BEfUAx0bPcU92urISbgyac --value 20
+
+// token sender is the same as txfee payer
+transfer --fromkey e4d6a2baf4552e470064400c7863cef901000000C7BEfUAx0bPcU92urISbgyac --sender n3aE47Usp7ZDBje5QvCj4gWtn1Wjh9iMv5 --receiver n1qsiUPQTVCRmt2pKSEQpS44SF6tPYLr7H --token ZToken --tksenderkey e4d6a2baf4552e470064400c7863cef901000000C7BEfUAx0bPcU92urISbgyac --value 100
+
+
+changeValue = 0.00000054
+minValue = 0.00000546
+
+"PrivateKey": "7499482e3b70ce5f4e37cc159e107f4101000000SsCdNOd6jcpjrd52NjdLTlBa",
+"Address": "n2oDbLMAeZbp4xNKMhQDpDmTshKr51xLo2"
+
+"PrivateKey": "59c8fd55004ae9b5b8bf4c9591556055010000000uAqPDFUCG9Uct8R7tY38qIb",
+"Address": "miCpthLxwzp7bqEUqRxnnzsPeY8DYF7Nd5"
+
+0100000002148a241c24fcb4e1c67b116c348964af88e6d0df331448ed793cb31a4731968c030000001976a91450a6f1ddade7cf29da2e613b42f9891a1954dac888acffffffffe0ecf6b23bb9d7f6aecf9b96e22f7d46e2aa658c1b518f5b8e9d0ccc6cd4e33b000000001976a9147d7bbc682095b0d88a879173b026b72f6ff26fb688acffffffff04ce6a4800000000001976a9147d7bbc682095b0d88a879173b026b72f6ff26fb688ac36000000000000001976a91450a6f1ddade7cf29da2e613b42f9891a1954dac888ac0000000000000000166a146f6d6e69000000000000001f0000001700f05c0022020000000000001976a9147d7bbc682095b0d88a879173b026b72f6ff26fb688ac00000000
+
+01000000020ccded9e28533607753b7a3c6fdd6cf5d3a267380d5d63932acbc3af584c0797000000006b483045022100b6b364b9419d5d2a9a583c29fcfc0cb34dda6866aa1031b328a7cbeb731846e302207060b1b38118ffcc0f02562d5893d9f00c821c96e52502d89a84e4aa46e9ae210121021911aed84c46363c3c761becee27f57f240c70c87340ebd880b6a5d92081fcacffffffff4bada6f2b6cf278b539084b42baf783ca2d2e722cb312dc10990dc701c365fec010000006a473044022037857400cf31cf4f43e3cec709086e69968917d056b7a738cdb061a066924d73022044faf95e32ada03174f36da9ecbf5579a4d0e5ea87d57ad13ee964b8500c3a5d01210204113359d63e933d071d6bfc519911fda7256bc4697a9dbe2bc955609693127bffffffff03b686052a010000001976a9141d7ab5e76028c78ef334ad613baec2c58865a29b88ac0000000000000000166a146f6d6e69000000008000000300000002540be40022020000000000001976a9141d7ab5e76028c78ef334ad613baec2c58865a29b88ac00000000
+
+
+
+transfer --fromkey 5729d496418697a85acb3a179f364f3502000000xUV9nBnnANTTmpBctZuVQ412 --from mxQh6VT8wp2DyMpy7bZZBeGFcpSFsAMsKA --receiver n1qsiUPQTVCRmt2pKSEQpS44SF6tPYLr7H --value 0.000005
