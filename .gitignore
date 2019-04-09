@@ -7,3 +7,13 @@ eos/node*/
 ethereum/owgc-geth.tgz
 owgc/geth-linux
 owgc/geth-mac
+
+__*_is_activated__
+grin-v1.0.3-514864288-osx.tgz
+result.issue_send_tx
+result.post_tx
+/omni-core/omnicore-0.3.0/
+/omni-core/omnicore-0.4.0/
+grin
+grin-miner-v1.0.2/grin-miner
+grin-miner-v1.0.2/plugins/
