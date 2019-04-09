@@ -1,0 +1,10 @@
+{
+  "amount":1000000000, 
+  "minimum_confirmations": 1,
+  "message":"send from zl",
+  "method": "http",
+  "dest": "http://127.0.0.1:33415",
+  "max_outputs": 500,
+  "num_change_outputs": 1,
+  "selection_strategy_is_use_all": false
+}

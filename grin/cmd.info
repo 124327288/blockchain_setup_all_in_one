@@ -1,0 +1,12 @@
+data=`cat ./issue_send_tx-01.json`; \
+curl -0 -XPOST http://127.0.0.1:3420/v1/wallet/owner/issue_send_tx -d "$data"
+---------------------------------
+ or
+---------------------------------
+curl -XPOST \
+--data-binary '{"amount": 2000000000, "minimum_confirmations": 10, "method": "http", "dest": "http://127.0.0.1:33415", "max_outputs": 500, "num_change_outputs": 1, "selection_strategy_is_use_all": true}' \
+http://127.0.0.1:3420/v1/wallet/owner/issue_send_tx
+
+curl -0 -XGET http://127.0.0.1:3420/v1/wallet/owner/node_height
+
+curl -0 -XGET http://127.0.0.1:3420//v1/wallet/owner/retrieve_summary_info
