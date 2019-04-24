@@ -17,3 +17,4 @@ result.post_tx
 grin
 grin-miner-v1.0.2/grin-miner
 grin-miner-v1.0.2/plugins/
+user/db/lmdb/*.mdb
