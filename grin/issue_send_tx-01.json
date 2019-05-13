@@ -1,12 +1,13 @@
 {
-  "amount":100000000, 
+  "amount":100000000000, 
   "minimum_confirmations": 1,
-  "message":"send from zl",
+  "message":"send to 4420",
   "method": "http",
-  "dest": "http://127.0.0.1:23415",
+  "dest": "http://127.0.0.1:33415",
   "max_outputs": 500,
   "num_change_outputs": 1,
   "selection_strategy_is_use_all": false,
 
-  "":"dest:http://localhost:33415 is the customize wallet"
+  "":"dest:http://localhost:33415 is the customize wallet",
+  "":"1 coin=1000000000"
 }
