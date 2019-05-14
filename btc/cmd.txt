@@ -1,1 +1,6 @@
 transfer --fkey 1af172762746ae5722948e342a0abddb01000000xGU55VythhpMhHkHcJ9tP2x1 --from mmztibmBsXh3ezygzAMN52CtfCUwPWzXMy --to mnXM8CCyXmzBZM1d11rUax4XBv4bYDNhJ6 --value 1
+
+curl --user omniwalletfuck:dh41d8cd98f00b208ecf8427ed41d8cd98f00b204e9800998ecf8427e --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "estimatesmartfee", "params": [5] }' -H 'content-type: text/plain;' http://127.0.0.1:8332/
+
+curl --user omniwalletfuck:dh41d8cd98f00b208ecf8427ed41d8cd98f00b204e9800998ecf8427e --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getbalance", "params": ["*", 6] }' -H 'content-type: text/plain;' http://127.0.0.1:8332/
+
