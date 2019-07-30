@@ -12,3 +12,5 @@ curl -0 -XGET http://127.0.0.1:3420/v1/wallet/owner/node_height
 curl -0 -XGET http://127.0.0.1:3420//v1/wallet/owner/retrieve_summary_info
 
 curl http://localhost:127.0.0.1:23413/v1/chain/outputs/byids?id=0965926600382e6184b3b4872cf28d5ba2bba475cd2eac642fe42ad4ff7d152adb
+
+curl -0 XGET http://localhost:23413/v1/blocks/height
