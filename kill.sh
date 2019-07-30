@@ -15,7 +15,7 @@ if [ "x$killwho" == "x" ]; then
 fi
 
 function get_psid() {
-    echo `ps -ef | grep -v -E 'grep|kill\.sh' | grep $killwho | awk '{print $2}'`
+    echo `ps -ef | grep -v -E 'grep|.*kill.*\.sh' | grep $killwho | awk '{print $2}'`
 }
 
 psid=$(get_psid)
