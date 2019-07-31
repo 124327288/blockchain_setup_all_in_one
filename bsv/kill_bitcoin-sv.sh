@@ -2,4 +2,5 @@
 
 set -o nounset 
 
-../kill.sh bitcoin-sv
+cd ../
+./kill.sh bitcoin-sv

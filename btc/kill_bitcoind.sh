@@ -1,3 +1,4 @@
 #!/bin/bash
 
-../kill.sh bitcoind
+cd ../
+source ./kill.sh bitcoind
