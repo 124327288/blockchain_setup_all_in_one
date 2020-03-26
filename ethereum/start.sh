@@ -42,15 +42,13 @@ if [ ! -d "$DIRECTORY" ]; then
         geth --datadir=$datadir/$no --password $password_file account new > $datadir/$no"/account1.txt"
         geth --datadir=$datadir/$no --password $password_file account new > $datadir/$no"/account2.txt"
 
-        address1=`awk  '{print $2}' $datadir/$no"/account1.txt"`
-        address2=`awk  '{print $2}' $datadir/$no"/account2.txt"`
+        address1=`awk  '{print $6}' $datadir/$no"/account1.txt"`
+        address2=`awk  '{print $6}' $datadir/$no"/account2.txt"`
 
-        address1=${address1:1:40}
-        address2=${address2:1:40}
-        echo account1=$address1
-        echo account1=$address2
+        address1=${address1:3:42}
+        address2=${address2:3:42}
 
-        echo '{"config": {"chainId": 15, "ByzantiumBlock": 0, "homesteadBlock": 0, "eip155Block": 0, "eip158Block": 0 }, "coinbase" : "0x0000000000000000000000000000000000000001", "difficulty" : "0x100000", "extraData" : "", "gasLimit" : "0xffffffff", "nonce" : "0x0000000000000042", "mixhash" : "0x0000000000000000000000000000000000000000000000000000000000000000", "parentHash" : "0x0000000000000000000000000000000000000000000000000000000000000000", "timestamp" : "0x00", "alloc": {"'$address1'":{"balance":"100000000000000000000000"}, "'$address2'":{"balance":"100000000000000000000000"} } }' > $datadir/genesis
+        echo '{ "config": { "chainId": 15, "homesteadBlock": 0, "eip150Block": 0, "eip155Block": 0, "eip158Block": 0, "byzantiumBlock": 0, "constantinopleBlock": 0, "petersburgBlock": 0 }, "alloc": { "'$address1'": { "balance": "10000000000000000000000000" }, "'$address2'": { "balance": "10000000000000000000000000" } }, "coinbase": "0x0000000000000000000000000000000000000000", "difficulty": "0x1000", "extraData": "", "gasLimit": "0x2fefd8", "nonce": "0x0000000000000042", "mixhash": "0x0000000000000000000000000000000000000000000000000000000000000000", "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000", "timestamp": "0x00" }' > $datadir/genesis
     fi
 
     geth --datadir $datadir/$no init ./data/genesis 
@@ -62,26 +60,19 @@ fi
 #--wsorigins value Origins from which to accept websockets requests
 
 command=
+echo ›››››››››››$no
 if [ "mine" == "$no" ];then
-    #http rpc call support
-    #command='geth --datadir ./data/mine --networkid 10086 --ipcdisable --port 62000 --rpc --rpccorsdomain "*" --rpcport 8200 --bootnodes '$bootnode_addr' --minerthreads=1 --etherbase=0x0000000000000000000000000000000000000001 console'
-    # websocket rpc call support
     command='geth --datadir ./data/mine --networkid 10086 --ipcdisable --port 619'$no' --ws --wsaddr=localhost --wsport 85'$no' --wsapi "db,personal,eth,net,web3,debug" --wsorigins=* --bootnodes '$bootnode_addr' console'
 
 elif [ "remix" == "$no" ];then
-    #echo 'geth --datadir ./data/00 --rpc --rpcapi ''db,net,admin,miner,eth,web3,debug,personal'' --rpcport 8545 --rpccorsdomain '*' --etherbase=0x0000000000000000000000000000000000000001 console'
-    geth --datadir ./data/00 --rpc --rpcapi 'db,net,admin,miner,eth,web3,debug,personal' --rpcport 8545 --rpccorsdomain '*' --ws --wsaddr=localhost --wsport 8500 --wsapi "db,personal,eth,net,web3,debug" --wsorigins=* --etherbase=0x0000000000000000000000000000000000000001 console
+    command='geth --datadir ./data/00 --rpc --rpcapi 'db,net,admin,miner,eth,web3,debug,personal' --rpcport 8545 --rpccorsdomain '*' --ws --wsaddr=localhost --wsport 8500 --wsapi "db,personal,eth,net,web3,debug" --wsorigins=* --etherbase=0x0000000000000000000000000000000000000001 console'
 else
-    #http rpc call support
-    #command='geth --datadir ./data/'$no' --networkid 10086 --ipcdisable --port 619'$no' --rpc --rpccorsdomain "*" --rpcport 81'$no' --bootnodes '$bootnode_addr' console'
-    # websocket rpc call support
-    command='geth --datadir ./data/'$no' --networkid 10086 --ipcdisable --port 619'$no' --rpc -rpcapi 'db,net,admin,miner,eth,web3,debug,personal' --rpccorsdomain "*" --rpcport 81'$no' --ws --wsaddr=127.0.0.1 --wsport 85'$no' --wsapi "db,personal,eth,net,web3,debug" --wsorigins=* --bootnodes '$bootnode_addr' console'
+    command='geth --datadir ./data/'$no' --networkid 10086 --ipcdisable --port 619'$no' --rpc --rpcapi 'db,net,admin,miner,eth,web3,debug,personal,txpool' --allow-insecure-unlock --rpccorsdomain=* --rpcport 81'$no' --ws --wsaddr=127.0.0.1 --wsport 85'$no' --wsapi 'personal,eth,net,web3,miner,txpool,admin,debug,txpool' --wsorigins=* --bootnodes '$bootnode_addr' console'
 fi
 
-$echo '--------excute shell command:-----'
+echo '--------excute shell command:-----'
 echo $command
 echo '----------------------------------'
 
 $command
-
 
